@@ -1,0 +1,44 @@
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+       Map <Integer,Integer> map = new HashMap<>(); //created hash and inserted 0,1
+       map.put(0,1);
+        int sum=0;
+        int rem = 0;
+        int ans=0;
+
+        for(int i=0;i<nums.length;i++){      //each elem, find sum, rem, if neg, added k
+            sum+=nums[i];
+            rem=sum%k;
+            if(rem<0) rem+=k;
+            
+            if(map.containsKey(rem)){       //if rem in hash, add to ans,increment by one
+                ans+=map.get(rem);
+                map.put(rem,map.get(rem)+1);
+            }
+            else map.put(rem,1); //else put in hash
+        }
+        return ans;
+
+    }
+}
+
+=======================================================================================
+
+class Solution {
+    public int subarraysDivByK(int[] nums, int k) {
+        int[] sum = new int[k];
+        int s=0;
+        int rem=0;
+        int total=0;
+        for(int i=0;i<nums.length;i++){
+            s+=nums[i];
+            rem=s%k;
+            if(rem<0) rem+=k;
+            sum[rem]++;
+        }
+        for(int r:sum){
+            total+=(r*(r-1)/2);
+        }
+        return total+sum[0];
+    }
+}
