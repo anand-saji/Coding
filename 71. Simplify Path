@@ -1,0 +1,28 @@
+// Algorithm
+// 1. split inout string into string array and remove /
+// 2. for each string in array 
+// 3. if string == ".", continue
+// 4. if string == "..", pop 
+// 5. else push
+// 6. return string by joining / between stack elements
+
+class Solution {
+    public String simplifyPath(String path) {
+        final String[] dirs = path.split("/");
+        Stack<String> stack = new Stack<>();
+        for( final String dir : dirs ){
+            if((dir.isEmpty()) || (dir.equals("."))){
+                continue;
+            }
+            if(dir.equals("..")){
+                if(!stack.isEmpty()){
+                    stack.pop();
+                }
+            }
+            else
+                stack.push(dir); 
+        }
+
+        return "/" + String.join("/",stack);   
+    }
+}
