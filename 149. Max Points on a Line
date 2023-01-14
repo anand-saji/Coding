@@ -23,3 +23,15 @@ class Solution {
         return ans;
     }
 }
+
+===========================================
+
+// Algorithm 
+// 1. take count. if count<=2 return count
+// 2. outer for loop
+// 3. inner for loop for next maxPoints
+// 4. temp =2
+// 5. for loop for all points except outer and inner points
+// 6. if 3 points satisfy slope condition, then temp++
+// 7. if temp> ans ; update ans
+// 8. return ans;
